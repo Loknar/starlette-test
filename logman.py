@@ -213,8 +213,12 @@ class ColoredFormatter(logging.Formatter):
 
 
 def configure_logger(
-    name, role, config, output_dir='./logs/', log_to_cli=False, colored_cli=True, log_to_file=True
+    name, role='cli', config=None, output_dir='./logs/', log_to_cli=False, colored_cli=True,
+    log_to_file=True
 ):
+    global Log_Config
+    if config is None:
+        config = Log_Config
     logger = logging.getLogger(name)
     log_level = config['loglevel']
     logger.setLevel(log_level)

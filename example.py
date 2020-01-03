@@ -39,18 +39,18 @@ def tame_uvicorn_logger():
     # logging.getLogger('uvicorn.asgi').handlers = []
     # logging.getLogger('uvicorn.error').handlers = []
     # set our own handlers
-    logman.configure_logger('uvicorn', 'api', logman.Log_Config, log_to_cli=LOG_TO_CLI)
+    logman.configure_logger('uvicorn', 'api', log_to_cli=LOG_TO_CLI)
     # interested in access logs, either from uvicorn.access or create middleware for more details?
     # or maybe both?
-    logman.configure_logger('uvicorn.access', 'api', logman.Log_Config, log_to_cli=LOG_TO_CLI)
+    logman.configure_logger('uvicorn.access', 'api', log_to_cli=LOG_TO_CLI)
     # Hmm? configuring uvicorn.access causes uvicorn.error log .. incorrect logger setup somewhere?
     # [2020-01-03..] [INFO] Started server process [27260] (uvicorn.error - main.py:389)
     # [2020-01-03..] [INFO] 127.0.0.1:65364 - "GET / HTTP/1.1" 200 (uvicorn.error - h11_impl.py:454)
     # yeah, pretty sure these logs should be logged into uvicorn.access, not uvicorn.error ..
     # ---
     # haven't looked at what exactly is logged to uvicorn.asgi and uvicorn.error .. maybe want?
-    # logman.configure_logger('uvicorn.asgi', 'api', logman.Log_Config, log_to_cli=True)
-    # logman.configure_logger('uvicorn.error', 'api', logman.Log_Config, log_to_cli=True)
+    # logman.configure_logger('uvicorn.asgi', 'api', log_to_cli=True)
+    # logman.configure_logger('uvicorn.error', 'api', log_to_cli=True)
 
 
 async def homepage(request):
